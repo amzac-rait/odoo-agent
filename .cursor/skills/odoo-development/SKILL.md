@@ -2,23 +2,23 @@
 name: odoo-development
 description: |
   MUST be loaded when ANY Odoo development task is detected.
-  CRITICAL: Claude MUST use this skill for ALL tasks involving:
+  CRITICAL: You MUST use this skill for ALL tasks involving:
   - "odoo", "module", "model", "view", "field", "OWL", "manifest"
   - ANY mention of Odoo versions (14, 15, 16, 17, 18, 19)
   - "create odoo module", "generate odoo code", "review odoo module"
   - "upgrade odoo", "odoo best practices", "odoo security"
 
-  ALWAYS trigger the odoo-context-gatherer agent BEFORE writing ANY Odoo code.
+  ALWAYS invoke the odoo-context-gatherer skill BEFORE writing ANY Odoo code.
 ---
 
 # Odoo Development Skill Index
 
-> **CRITICAL**: Before writing ANY Odoo code, Claude MUST invoke the
-> `odoo-context-gatherer` agent to compile relevant patterns for the task.
+> **CRITICAL**: Before writing ANY Odoo code, invoke the odoo-context-gatherer skill
+> to compile relevant patterns for the task.
 >
 > **MANDATORY WORKFLOW**:
 > 1. Detect/confirm Odoo version (NEVER skip)
-> 2. Invoke `odoo-development:odoo-context-gatherer` agent with task description
+> 2. Task tool with subagent_type="generalPurpose" — prompt to follow odoo-context-gatherer/SKILL.md
 > 3. Use returned context patterns for code generation
 > 4. NEVER skip step 2 - context gathering is REQUIRED
 
@@ -26,15 +26,15 @@ description: |
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  BEFORE generating Odoo code, you MUST:                                      ║
 ║  1. Determine the target Odoo version                                        ║
-║  2. Invoke odoo-context-gatherer agent with task description                 ║
-║  3. Use the patterns returned by the agent                                   ║
+║  2. Invoke odoo-context-gatherer skill via Task tool                         ║
+║  3. Use the patterns returned                                                ║
 ║                                                                              ║
-║  DO NOT generate Odoo code without context from the agent.                   ║
+║  DO NOT generate Odoo code without context gathering.                        ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
-> **Usage**: This is a lightweight discovery index. DO NOT read full skill files unless needed.
-> Use `Read` tool on specific file paths only when you need the detailed pattern.
+> **Usage**: This is a lightweight discovery index. DO NOT read full pattern files unless needed.
+> Use `Read` on `reference/{pattern}.md` only when you need the detailed pattern.
 
 ## Quick Reference (Copy-Paste Ready)
 
@@ -87,64 +87,64 @@ class MyModel(models.Model):
 
 | Intent / Keywords | Skill File | Description |
 |-------------------|------------|-------------|
-| fields, char, many2one, one2many, selection | `skills/field-type-reference.md` | All field types with attributes |
-| computed, depends, inverse, search | `skills/computed-field-patterns.md` | Computed field patterns |
-| constraint, validation, check | `skills/constraint-patterns.md` | SQL and Python constraints |
-| onchange, dynamic, domain | `skills/onchange-dynamic-patterns.md` | Form field dynamics |
-| view, form, tree, kanban, search | `skills/xml-view-patterns.md` | XML view patterns |
-| widget, statusbar, badge, image | `skills/widget-field-patterns.md` | Field widgets |
-| qweb, template, t-if, t-foreach | `skills/qweb-template-patterns.md` | QWeb templating |
-| action, window, server, client | `skills/action-patterns.md` | Action patterns |
-| menu, navigation, menuitem | `skills/menu-navigation-patterns.md` | Menu structure |
-| security, access, rule, group | `skills/odoo-security-guide.md` | Security configuration |
-| workflow, state, statusbar, approval | `skills/workflow-state-patterns.md` | State machines |
-| wizard, transient, dialog | `skills/wizard-patterns.md` | Wizard patterns |
-| report, pdf, qweb, print | `skills/report-patterns.md` | PDF reports |
-| cron, scheduled, automation | `skills/cron-automation-patterns.md` | Scheduled actions |
-| controller, http, api, rest, json | `skills/controller-api-patterns.md` | HTTP controllers |
-| mail, email, chatter, activity | `skills/mail-notification-patterns.md` | Mail integration |
-| multi-company, company, currency | `skills/multi-company-patterns.md` | Multi-company |
-| inherit, extend, override | `skills/inheritance-patterns.md` | Model/view inheritance |
-| migration, upgrade, version | `skills/data-migration-patterns.md` | Data migration |
-| website, portal, public | `skills/website-integration-patterns.md` | Website integration |
-| external, api, webhook, sync | `skills/external-api-patterns.md` | External APIs |
-| logging, debug, error | `skills/logging-debugging-patterns.md` | Logging/debugging |
-| stock, inventory, warehouse, move | `skills/stock-inventory-patterns.md` | Stock operations |
-| account, invoice, journal, payment | `skills/accounting-patterns.md` | Accounting |
-| sale, order, quotation, crm, lead | `skills/sale-crm-patterns.md` | Sales/CRM |
-| hr, employee, contract, leave | `skills/hr-employee-patterns.md` | HR patterns |
-| domain, filter, search, operator | `skills/domain-filter-patterns.md` | Search domains |
-| sequence, number, reference | `skills/sequence-numbering-patterns.md` | Auto-numbering |
-| purchase, vendor, procurement | `skills/purchase-procurement-patterns.md` | Purchasing |
-| project, task, timesheet | `skills/project-task-patterns.md` | Project management |
-| context, env, sudo, with_context | `skills/context-environment-patterns.md` | Environment/context |
-| exception, error, validation | `skills/error-handling-patterns.md` | Error handling |
-| portal, token, access, share | `skills/portal-access-patterns.md` | Portal access |
-| dashboard, kpi, analytics, graph | `skills/dashboard-kpi-patterns.md` | Dashboards |
-| settings, config, parameter | `skills/config-settings-patterns.md` | Module settings |
-| translation, i18n, language | `skills/translation-i18n-patterns.md` | Translations |
-| assets, js, css, scss, bundle | `skills/assets-bundling-patterns.md` | Asset bundling |
-| variant, attribute, product | `skills/product-variant-patterns.md` | Product variants |
-| pricelist, price, discount | `skills/pricelist-pricing-patterns.md` | Pricing |
-| uom, unit, measure, conversion | `skills/uom-patterns.md` | Units of measure |
-| lot, serial, batch, expiry | `skills/lot-serial-patterns.md` | Lot/serial tracking |
-| import, export, csv, excel | `skills/import-export-patterns.md` | Data import/export |
-| tax, fiscal, vat | `skills/tax-fiscal-patterns.md` | Tax configuration |
-| owl, component, frontend, javascript | `skills/odoo-owl-components.md` | OWL components |
-| test, unittest, integration | `skills/odoo-test-patterns.md` | Testing |
-| performance, optimize, index | `skills/odoo-performance-guide.md` | Performance |
-| manifest, module, depends | `skills/odoo-module-generator.md` | Module structure |
-| version, 14, 15, 16, 17, 18, 19 | `skills/odoo-version-knowledge.md` | Version differences |
-| binary, attachment, file, image | `skills/attachment-binary-patterns.md` | File handling |
+| fields, char, many2one, one2many, selection | `reference/field-type-reference.md` | All field types with attributes |
+| computed, depends, inverse, search | `reference/computed-field-patterns.md` | Computed field patterns |
+| constraint, validation, check | `reference/constraint-patterns.md` | SQL and Python constraints |
+| onchange, dynamic, domain | `reference/onchange-dynamic-patterns.md` | Form field dynamics |
+| view, form, tree, kanban, search | `reference/xml-view-patterns.md` | XML view patterns |
+| widget, statusbar, badge, image | `reference/widget-field-patterns.md` | Field widgets |
+| qweb, template, t-if, t-foreach | `reference/qweb-template-patterns.md` | QWeb templating |
+| action, window, server, client | `reference/action-patterns.md` | Action patterns |
+| menu, navigation, menuitem | `reference/menu-navigation-patterns.md` | Menu structure |
+| security, access, rule, group | `reference/odoo-security-guide.md` | Security configuration |
+| workflow, state, statusbar, approval | `reference/workflow-state-patterns.md` | State machines |
+| wizard, transient, dialog | `reference/wizard-patterns.md` | Wizard patterns |
+| report, pdf, qweb, print | `reference/report-patterns.md` | PDF reports |
+| cron, scheduled, automation | `reference/cron-automation-patterns.md` | Scheduled actions |
+| controller, http, api, rest, json | `reference/controller-api-patterns.md` | HTTP controllers |
+| mail, email, chatter, activity | `reference/mail-notification-patterns.md` | Mail integration |
+| multi-company, company, currency | `reference/multi-company-patterns.md` | Multi-company |
+| inherit, extend, override | `reference/inheritance-patterns.md` | Model/view inheritance |
+| migration, upgrade, version | `reference/data-migration-patterns.md` | Data migration |
+| website, portal, public | `reference/website-integration-patterns.md` | Website integration |
+| external, api, webhook, sync | `reference/external-api-patterns.md` | External APIs |
+| logging, debug, error | `reference/logging-debugging-patterns.md` | Logging/debugging |
+| stock, inventory, warehouse, move | `reference/stock-inventory-patterns.md` | Stock operations |
+| account, invoice, journal, payment | `reference/accounting-patterns.md` | Accounting |
+| sale, order, quotation, crm, lead | `reference/sale-crm-patterns.md` | Sales/CRM |
+| hr, employee, contract, leave | `reference/hr-employee-patterns.md` | HR patterns |
+| domain, filter, search, operator | `reference/domain-filter-patterns.md` | Search domains |
+| sequence, number, reference | `reference/sequence-numbering-patterns.md` | Auto-numbering |
+| purchase, vendor, procurement | `reference/purchase-procurement-patterns.md` | Purchasing |
+| project, task, timesheet | `reference/project-task-patterns.md` | Project management |
+| context, env, sudo, with_context | `reference/context-environment-patterns.md` | Environment/context |
+| exception, error, validation | `reference/error-handling-patterns.md` | Error handling |
+| portal, token, access, share | `reference/portal-access-patterns.md` | Portal access |
+| dashboard, kpi, analytics, graph | `reference/dashboard-kpi-patterns.md` | Dashboards |
+| settings, config, parameter | `reference/config-settings-patterns.md` | Module settings |
+| translation, i18n, language | `reference/translation-i18n-patterns.md` | Translations |
+| assets, js, css, scss, bundle | `reference/assets-bundling-patterns.md` | Asset bundling |
+| variant, attribute, product | `reference/product-variant-patterns.md` | Product variants |
+| pricelist, price, discount | `reference/pricelist-pricing-patterns.md` | Pricing |
+| uom, unit, measure, conversion | `reference/uom-patterns.md` | Units of measure |
+| lot, serial, batch, expiry | `reference/lot-serial-patterns.md` | Lot/serial tracking |
+| import, export, csv, excel | `reference/import-export-patterns.md` | Data import/export |
+| tax, fiscal, vat | `reference/tax-fiscal-patterns.md` | Tax configuration |
+| owl, component, frontend, javascript | `reference/odoo-owl-components.md` | OWL components |
+| test, unittest, integration | `reference/odoo-test-patterns.md` | Testing |
+| performance, optimize, index | `reference/odoo-performance-guide.md` | Performance |
+| manifest, module, depends | `reference/odoo-module-generator.md` | Module structure |
+| version, 14, 15, 16, 17, 18, 19 | `reference/odoo-version-knowledge.md` | Version differences |
+| binary, attachment, file, image | `reference/attachment-binary-patterns.md` | File handling |
 
 ---
 
 ## Version-Specific Patterns
 
 For version-specific code, check these skill files:
-- `skills/odoo-version-knowledge.md` - Breaking changes by version
-- `skills/odoo-owl-components.md` - OWL 1.x (v15) / 2.x (v16-18) / 3.x (v19)
-- Version-specific files: `skills/{pattern}-{version}.md`
+- `reference/odoo-version-knowledge.md` - Breaking changes by version
+- `reference/odoo-owl-components.md` - OWL 1.x (v15) / 2.x (v16-18) / 3.x (v19)
+- Version-specific files: `reference/{pattern}-{version}.md`
 
 ## How to Use This Index
 
@@ -158,6 +158,6 @@ Example:
 ```
 User: "Create a computed field that sums order lines"
 → Keywords: computed, depends
-→ Read: skills/computed-field-patterns.md
+→ Read: reference/computed-field-patterns.md
 → Use the pattern, don't keep file in context
 ```

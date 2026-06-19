@@ -16,12 +16,6 @@ description: |
   </commentary>
   </example>
 
-tools:
-  - Read
-  - Glob
-  - Grep
-model: inherit
-color: green
 ---
 
 # Odoo Skill Finder Agent

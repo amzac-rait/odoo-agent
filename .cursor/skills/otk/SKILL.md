@@ -16,19 +16,19 @@ description: |
     otk gain                     → token savings dashboard
 
   Compatible with: odoo-doodba-dev, odoo-development, odoo-query plugins.
-allowed-tools: Bash, Read, Glob, Grep
+ Bash, Read, Glob, Grep
 ---
 
 # OTK - Odoo Token Killer
 
-**Reduce Claude Code token consumption by 60-90% on Odoo development.**
+**Reduce Cursor token consumption by 60-90% on Odoo development.**
 
 Inspired by [RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk) by the rtk-ai team.
 We thank the RTK team for pioneering the token-optimized CLI proxy pattern.
 
 ## How It Works
 
-OTK sits between Claude Code and your terminal. When Claude runs commands,
+OTK sits between Cursor and your terminal. When Claude runs commands,
 OTK's PreToolUse hook transparently intercepts and filters the output:
 
 ```
@@ -54,8 +54,8 @@ Tokens saved: ~80%
 
 | Command | Description |
 |---------|-------------|
-| `/otk-setup` | Install OTK and register the PreToolUse hook |
-| `/otk-gain` | Show token savings analytics dashboard |
+| **otk-setup** | Install OTK and register the preToolUse hook |
+| **otk-gain** | Show token savings analytics dashboard |
 
 ## Filter Strategies
 

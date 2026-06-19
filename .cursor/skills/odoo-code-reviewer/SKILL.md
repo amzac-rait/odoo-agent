@@ -23,13 +23,6 @@ description: |
   </commentary>
   </example>
 
-tools:
-  - Read
-  - Glob
-  - Grep
-  - WebFetch
-model: inherit
-color: blue
 ---
 
 # Odoo Code Reviewer Agent

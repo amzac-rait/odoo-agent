@@ -87,12 +87,12 @@ AI agents should accept and parse these input parameters:
 ├─────────────────────────────────────────────────────────────────────┤
 │ Read these files based on detected version:                         │
 │                                                                     │
-│ skills/odoo-module-generator-{version}.md                           │
-│ skills/odoo-model-patterns-{version}.md                             │
-│ skills/odoo-security-guide-{version}.md                             │
+│ reference/odoo-module-generator-{version}.md                           │
+│ reference/odoo-model-patterns-{version}.md                             │
+│ reference/odoo-security-guide-{version}.md                             │
 │                                                                     │
 │ If UI includes OWL:                                                 │
-│ skills/odoo-owl-components-{version}.md                             │
+│ reference/odoo-owl-components-{version}.md                             │
 └─────────────────────────────────────────────────────────────────────┘
                               │
                               ▼

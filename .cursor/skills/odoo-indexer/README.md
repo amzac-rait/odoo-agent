@@ -1,6 +1,6 @@
 # Odoo Indexer Skill
 
-A Claude Code Skill for indexing and searching Odoo codebases.
+A Cursor Skill for indexing and searching Odoo codebases.
 
 ## Overview
 
@@ -61,7 +61,7 @@ uv run scripts/index_status.py
 ## Architecture
 
 ```
-skills/odoo-indexer/
+../odoo-indexer/
 ├── SKILL.md              # Skill definition for Claude
 ├── README.md             # This file
 ├── pyproject.toml        # Python dependencies (uv project)
@@ -110,7 +110,7 @@ This Skill-based implementation differs from the MCP server version:
 
 1. **No persistent server**: Scripts connect to DB each time
 2. **Simpler deployment**: No MCP protocol overhead
-3. **Better portability**: Works anywhere Claude Code runs
+3. **Better portability**: Works anywhere Cursor runs
 4. **Team sharing**: Can be distributed via plugin or git
 
 Trade-offs:

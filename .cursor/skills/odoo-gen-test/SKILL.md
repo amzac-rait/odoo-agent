@@ -286,7 +286,7 @@ invoke test --modules={module_name}
 invoke test --modules={module_name} -v
 ```
 
-> To **run** tests (not generate them), use `/odoo-test` from the `odoo-doodba-dev` plugin.
+> To **run** tests (not generate them), use the **odoo-test** skill.
 
 ## Example Usage
 

@@ -76,20 +76,20 @@ version = input_data["odoo_version"].replace(".0", "")  # "18.0" → "18"
 
 # ALWAYS load these skills (Read tool)
 required_skills = [
-    f"skills/odoo-module-generator-{version}.md",
-    f"skills/odoo-model-patterns-{version}.md",
-    f"skills/odoo-security-guide-{version}.md",
+    f"reference/odoo-module-generator-{version}.md",
+    f"reference/odoo-model-patterns-{version}.md",
+    f"reference/odoo-security-guide-{version}.md",
 ]
 
 # CONDITIONALLY load
 if input_data.get("ui_stack") in ["owl", "hybrid"]:
-    required_skills.append(f"skills/odoo-owl-components-{version}.md")
+    required_skills.append(f"reference/odoo-owl-components-{version}.md")
 
 if input_data.get("performance_critical"):
-    required_skills.append("skills/odoo-performance-guide.md")
+    required_skills.append("reference/odoo-performance-guide.md")
 
 if input_data.get("include_tests"):
-    required_skills.append("skills/odoo-test-patterns.md")
+    required_skills.append("reference/odoo-test-patterns.md")
 
 # ACTION: Read all required skill files
 for skill in required_skills:
@@ -223,10 +223,10 @@ manifest_content = read(f"{module_path}/__manifest__.py")
 #### STEP 2: Load Review Skills
 ```python
 skills_to_load = [
-    f"skills/odoo-model-patterns-{version}.md",
-    f"skills/odoo-security-guide-{version}.md",
-    "skills/odoo-performance-guide.md",
-    "skills/odoo-troubleshooting-guide.md",
+    f"reference/odoo-model-patterns-{version}.md",
+    f"reference/odoo-security-guide-{version}.md",
+    "reference/odoo-performance-guide.md",
+    "reference/odoo-troubleshooting-guide.md",
 ]
 ```
 
@@ -305,14 +305,14 @@ hops = [
 ```python
 for source, target in hops:
     skills_to_load = [
-        f"skills/odoo-module-generator-{source}-{target}.md",
-        f"skills/odoo-model-patterns-{source}-{target}.md",
-        f"skills/odoo-security-guide-{source}-{target}.md",
-        f"skills/odoo-version-knowledge-{source}-{target}.md",
+        f"reference/odoo-module-generator-{source}-{target}.md",
+        f"reference/odoo-model-patterns-{source}-{target}.md",
+        f"reference/odoo-security-guide-{source}-{target}.md",
+        f"reference/odoo-version-knowledge-{source}-{target}.md",
     ]
 
     if has_owl_components(module_path):
-        skills_to_load.append(f"skills/odoo-owl-components-{source}-{target}.md")
+        skills_to_load.append(f"reference/odoo-owl-components-{source}-{target}.md")
 ```
 
 #### STEP 3: Apply Transformations

@@ -68,13 +68,13 @@ Agents can use these wrappers for simpler syntax:
 
 **Before** (direct script call):
 ```bash
-cd skills/odoo-indexer
+cd ../odoo-indexer
 uv run scripts/get_details.py model "sale.order"
 ```
 
 **After** (using wrapper):
 ```bash
-./skills/odoo-indexer/tools/get_model_details.sh "sale.order"
+./../odoo-indexer/tools/get_model_details.sh "sale.order"
 ```
 
 ## Benefits

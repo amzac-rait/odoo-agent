@@ -53,10 +53,10 @@ If not provided:
 Based on the version jump, load appropriate guides:
 
 ```
-Read: odoo-development/skills/odoo-module-generator-{from}-{to}.md
-Read: odoo-development/skills/odoo-security-guide-{from}-{to}.md
-Read: odoo-development/skills/odoo-model-patterns-{from}-{to}.md
-Read: odoo-development/skills/odoo-owl-components-{from}-{to}.md
+Read: ../odoo-development/reference/odoo-module-generator-{from}-{to}.md
+Read: ../odoo-development/reference/odoo-security-guide-{from}-{to}.md
+Read: ../odoo-development/reference/odoo-model-patterns-{from}-{to}.md
+Read: ../odoo-development/reference/odoo-owl-components-{from}-{to}.md
 ```
 
 ### Step 3: Analyze Module

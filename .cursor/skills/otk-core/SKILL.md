@@ -5,7 +5,7 @@ description: |
   This skill provides the `otk` binary and all 12 filter strategies.
   AUTO-TRIGGER: Used automatically via PreToolUse hook - no manual invocation needed.
   Performance: <10ms startup, <5MB binary, <5MB memory. Written in Rust like RTK.
-allowed-tools: Bash, Read
+ Bash, Read
 ---
 
 # OTK Core Engine
@@ -44,12 +44,12 @@ Read that file to access the complete unfiltered output.
 ## Build
 
 ```bash
-cd ${CLAUDE_PLUGIN_ROOT}/skills/otk-core && cargo build --release
+cd ../otk-core && cargo build --release
 # Binary: target/release/otk (4.2MB)
 ```
 
 ## Install
 
 ```bash
-cd ${CLAUDE_PLUGIN_ROOT}/skills/otk-core && cargo install --path .
+cd ../otk-core && cargo install --path .
 ```

@@ -140,7 +140,7 @@ The `describe_model` action consolidates multiple queries into one call, providi
 
 ```bash
 # Get comprehensive model description
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/odoo_xmlrpc.py \
+python3 scripts/odoo_xmlrpc.py \
   --url "$URL" --db "$DB" --login "$LOGIN" --api-key "$API_KEY" \
   --action describe_model \
   --model "sale.order"
@@ -209,7 +209,7 @@ The `find_model` action searches across model names and descriptions with record
 
 ```bash
 # Find all models related to cycles
-python3 ${CLAUDE_PLUGIN_ROOT}/scripts/odoo_xmlrpc.py \
+python3 scripts/odoo_xmlrpc.py \
   --url "$URL" --db "$DB" --login "$LOGIN" --api-key "$API_KEY" \
   --action find_model \
   --keyword "cycle"

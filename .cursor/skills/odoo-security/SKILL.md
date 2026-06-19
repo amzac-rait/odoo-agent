@@ -76,7 +76,7 @@ What Odoo version? (14.0-19.0)
 ### Step 2: Load Version-Specific Skill
 
 ```
-Read: odoo-development/skills/odoo-security-guide-{version}.md
+Read: ../odoo-development/reference/odoo-security-guide-{version}.md
 ```
 
 ### Step 3: Gather Information (for generate)

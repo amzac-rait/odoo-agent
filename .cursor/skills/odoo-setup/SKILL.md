@@ -1,67 +1,121 @@
 ---
-description: "**AUTO-USE** on first plugin use or when user reports setup issues. Validates environment, installs dependencies, and builds the code indexer. Use when: 'setup', 'install', 'configure', 'indexer not found', 'not working'."
+name: odoo-setup
+description: Validate Doodba environment, install dependencies, and build the Odoo code indexer. Use when user asks to setup, install, configure Odoo dev environment, or reports indexer not working.
+disable-model-invocation: true
 ---
 
-# Doodba Setup Command
+# Odoo Setup
 
-Launch the setup agent to perform complete environment validation and indexer setup.
+Perform complete Doodba environment validation and indexer setup. Execute all steps autonomously and return ONLY a final status report.
 
-## Your Role
+## Setup Steps
 
-1. Launch the `odoo-setup` agent:
-   ```
-   subagent_type: odoo-doodba-dev:odoo-setup
-   prompt: "Perform complete Doodba environment setup and return final status report"
-   ```
+### Step 1: Check Docker
 
-2. The agent will autonomously:
-   - Check prerequisites (Docker, Python, uv)
-   - Detect or prompt for Odoo path
-   - Build the code indexer database (2-5 minutes)
-   - Validate indexer works
-   - Return a concise status report
+```bash
+docker --version
+```
 
-3. Display the agent's final report to the user
+**Expected**: Docker version 20.10+. If missing, return error report and stop.
+
+### Step 2: Check Docker Compose
+
+```bash
+docker compose version
+```
+
+**Expected**: Docker Compose v2+.
+
+### Step 3: Check Python
+
+```bash
+python3 --version
+```
+
+**Expected**: Python 3.10+. If version < 3.10, return error report and stop.
+
+### Step 4: Check/Install uv
+
+```bash
+uv --version
+```
+
+**If missing**:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="$HOME/.cargo/bin:$PATH"
+uv --version
+```
+
+### Step 5: Detect Odoo Path
+
+```bash
+if [ -n "$ODOO_PATH" ]; then
+    echo "Using ODOO_PATH=$ODOO_PATH"
+elif [ -d "./odoo/custom/src/odoo" ]; then
+    export ODOO_PATH="$(pwd)/odoo/custom/src"
+elif [ -d "$HOME/odoo/custom/src/odoo" ]; then
+    export ODOO_PATH="$HOME/odoo/custom/src"
+fi
+```
+
+If not found, ask the user for the path and set `ODOO_PATH`.
+
+### Step 6: Build Indexer Database
+
+From the odoo-indexer skill directory (sibling: `../odoo-indexer` when skills are installed globally):
+
+```bash
+cd ../odoo-indexer
+uv sync
+uv run scripts/update_index.py --full
+```
+
+### Step 7: Validate Indexer
+
+```bash
+uv run scripts/search.py "sale.order" --type model --limit 1
+```
+
+**Expected**: Results returned with query time <100ms.
+
+## Final Report Format
+
+```
+Setup Complete!
+
+Configuration:
+  - Docker:         {version}
+  - Docker Compose: {version}
+  - Python:         {version}
+  - uv:             {version}
+  - Odoo path:      {path}
+  - Indexer DB:     {size} ({modules} modules, {models} models)
+
+Performance:
+  - Search speed: {query_time}ms
+
+Ready to use! Ask about Odoo code:
+  "What is sale.order?"
+  "What fields does res.partner have?"
+```
 
 ## Troubleshooting
 
-If setup fails, guide the user:
-
 ### Docker not found
-```
 Install Docker: https://docs.docker.com/get-docker/
-Then re-run: /odoo-setup
-```
 
 ### Python version too old
-```
-Install Python 3.10+:
-  curl https://pyenv.run | bash
-  pyenv install 3.10
-  pyenv global 3.10
-
-Then re-run: /odoo-setup
-```
+Install Python 3.10+ via pyenv or your system package manager.
 
 ### Odoo path not detected
-```
-Set manually:
-  export ODOO_PATH="/path/to/odoo/custom/src"
-
-Then re-run: /odoo-setup
+```bash
+export ODOO_PATH="/path/to/odoo/custom/src"
 ```
 
 ### Indexer build fails
+```bash
+cd ../odoo-indexer
+uv sync
+uv run scripts/update_index.py --clear --full
 ```
-Manual rebuild:
-  cd skills/odoo-indexer
-  uv sync
-  uv run scripts/update_index.py --clear --full
-```
-
-## Re-running Setup
-
-Setup can be re-run anytime to:
-- Verify environment
-- Rebuild indexer after code changes
-- Fix configuration issues

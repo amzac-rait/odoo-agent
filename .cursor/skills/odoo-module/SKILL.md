@@ -1,50 +1,26 @@
 ---
 name: odoo-module
-description: |
-  MUST be invoked when user asks to "create odoo module", "generate module", "scaffold odoo", "new odoo app".
-  CRITICAL: This command MUST invoke the odoo-context-gatherer agent before generating any code.
-arguments:
-  - name: version
-    description: Target Odoo version (14.0, 15.0, 16.0, 17.0, 18.0, 19.0)
-    required: false
-  - name: name
-    description: Technical module name (snake_case)
-    required: false
-input_examples:
-  - description: "Generate inventory tracking module for Odoo 18"
-    arguments:
-      version: "18.0"
-      name: "inventory_tracker"
-  - description: "Create HR extension module"
-    arguments:
-      version: "17.0"
-      name: "hr_custom_fields"
-  - description: "Interactive mode - will prompt for details"
-    arguments: {}
+description: Scaffold a new Odoo module with version-specific best practices. Use when user asks to create, generate, or scaffold an Odoo module.
 ---
 
-# /odoo-module Command
+# Odoo Module Generator
 
 Generate a production-ready Odoo module following version-specific best practices.
 
 ## CRITICAL: VERSION REQUIREMENT
 
-```
-╔══════════════════════════════════════════════════════════════════════════════╗
-║  Before generating any code, you MUST determine the target Odoo version.     ║
-║  Then load the version-specific skill file.                                  ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-```
+Before generating any code, determine the target Odoo version and load the version-specific pattern file.
 
-## CRITICAL: MANDATORY AGENT INVOCATION
+## CRITICAL: MANDATORY CONTEXT GATHERING
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║  You MUST invoke the odoo-context-gatherer agent BEFORE generating code.     ║
-║  DO NOT proceed to code generation without context from this agent.          ║
+║  You MUST invoke the odoo-context-gatherer skill BEFORE generating code.     ║
+║  DO NOT proceed to code generation without context from this step.           ║
 ║                                                                              ║
-║  Invoke: Task tool with subagent_type="odoo-development:odoo-context-gatherer"║
-║  Prompt: "[User's task description]" + "version: [detected version]"         ║
+║  Invoke: Task tool with subagent_type="generalPurpose"                       ║
+║  Prompt: Read and follow odoo-context-gatherer/SKILL.md with task:           ║
+║          "[User's task description]" + "version: [detected version]"         ║
 ║                                                                              ║
 ║  NEVER skip this step. Context gathering is MANDATORY.                       ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -98,12 +74,12 @@ What Odoo version should I target?
 Based on the version, load the appropriate skill file:
 
 ```
-Read: odoo-development/skills/odoo-module-generator-{version}.md
+Read: ../odoo-development/reference/odoo-module-generator-{version}.md
 ```
 
 For example, for Odoo 18.0:
 ```
-Read: odoo-development/skills/odoo-module-generator-18.md
+Read: ../odoo-development/reference/odoo-module-generator-18.md
 ```
 
 ### Step 3: Gather Module Information
@@ -199,7 +175,7 @@ Generate files in the current working directory:
 ## AI Agent Instructions
 
 1. **FIRST**: Determine Odoo version (ask if not provided)
-2. **MANDATORY**: Invoke `odoo-development:odoo-context-gatherer` agent with task description
+2. **MANDATORY**: Invoke odoo-context-gatherer skill via Task tool with task description
    - Dispatch the agent **alone** in its own tool-use message.
    - Do NOT in the same message (or while waiting for the result) run Bash/Read/Grep/Glob
      against modules, models, or files the agent will examine. See "NO PARALLEL EXPLORATION".

@@ -40,12 +40,6 @@ description: |
   </commentary>
   </example>
 
-tools:
-  - Read
-  - Glob
-  - Grep
-model: inherit
-color: cyan
 ---
 
 # Odoo Context Gatherer Agent
@@ -106,15 +100,15 @@ Analyze the task description to identify ALL required domains. Map keywords to s
 
 For EACH identified domain:
 
-1. **Read the skill file** from `${CLAUDE_PLUGIN_ROOT}/skills/`
+1. **Read the skill file** from `../odoo-development/reference/`
 2. **Extract version-specific patterns** for the detected version
 3. **Note breaking changes** and deprecations for this version
 4. **Include copy-paste ready code snippets**
 
-**Version-specific skill file naming:**
-- General pattern: `skills/{pattern}.md`
-- Version-specific: `skills/{pattern}-{version}.md` (if exists)
-- Always check `skills/odoo-version-knowledge.md` for breaking changes
+**Version-specific pattern file naming:**
+- General pattern: `reference/{pattern}.md`
+- Version-specific: `reference/{pattern}-{version}.md` (if exists)
+- Always check `reference/odoo-version-knowledge.md` for breaking changes
 
 ### Step 4: Compile Context Output (MANDATORY)
 
@@ -257,7 +251,7 @@ class MyModel(models.Model):
 
 ### Skill Files Consulted
 - `skills/computed-field-patterns.md` - computed field syntax and decorators
-- `skills/odoo-version-knowledge.md` - v18 type hint recommendations
+- `reference/odoo-version-knowledge.md` - v18 type hint recommendations
 ```
 
 ## AGENT INSTRUCTIONS

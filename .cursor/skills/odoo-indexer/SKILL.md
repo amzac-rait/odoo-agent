@@ -1,7 +1,7 @@
 ---
 name: Odoo Indexer
 description: Fast indexer for Odoo codebases - 95% more token-efficient than reading files. USE AUTOMATICALLY AND PROACTIVELY before ANY Odoo code work. AUTO-TRIGGER when user mentions models (sale.order, res.partner, account.move, etc.), fields (partner_id, name, state, etc.), views (form, tree, kanban), XML IDs, or when you need to search/validate/explore Odoo code. USE BEFORE writing code to validate references exist, USE BEFORE reading files to locate elements, USE DURING debugging to trace dependencies. CRITICAL: Always validate models/fields/xmlids with indexer before using them in code. Provides <100ms searches vs reading 20+ files. Essential for all Odoo development tasks.
-allowed-tools: Read, Bash, Grep, Glob
+ Read, Bash, Grep, Glob
 ---
 
 # Odoo Indexer Skill
@@ -59,7 +59,7 @@ Fast indexing and search for Odoo codebase elements with sub-100ms query perform
 
 ## Prerequisites
 
-This skill requires `uv` (Python package manager). Usually auto-installed by `/odoo-setup`.
+This skill requires `uv` (Python package manager). Usually auto-installed by the odoo-setup skill.
 
 **Manual install** (if needed):
 ```bash
@@ -97,7 +97,7 @@ The skill auto-detects common Odoo locations:
 
 **Manual** (if index not built):
 ```bash
-cd odoo-doodba-dev/skills/odoo-indexer
+cd ../odoo-indexer
 uv run scripts/update_index.py --full
 ```
 
@@ -125,7 +125,7 @@ Database size: 42.3 MB
 
 ## Core Commands
 
-All commands use `uv run` from the `skills/odoo-indexer/` directory:
+All commands use `uv run` from the `../odoo-indexer/` directory:
 
 ### 1. Search for Elements
 
@@ -455,11 +455,11 @@ uv run scripts/search_by_attr.py field --filters '{"field_type": "Many2one", "co
 
 **Solution**:
 ```bash
-cd odoo-doodba-dev/skills/odoo-indexer
+cd ../odoo-indexer
 uv run scripts/update_index.py --full
 ```
 
-Or run `/odoo-setup` to rebuild everything.
+Or run the odoo-setup skill to rebuild everything.
 
 ---
 
@@ -522,7 +522,7 @@ uv run scripts/update_index.py --clear --full
 
 **Solution**:
 ```bash
-cd odoo-doodba-dev/skills/odoo-indexer
+cd ../odoo-indexer
 uv sync  # Auto-installs from pyproject.toml
 ```
 

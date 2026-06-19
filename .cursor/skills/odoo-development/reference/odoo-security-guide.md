@@ -58,10 +58,10 @@ QUESTION: What Odoo version are you targeting?
 
 ```
 # Example for Odoo 18.0 project
-Read: skills/odoo-security-guide-18.md
+Read: reference/odoo-security-guide-18.md
 
 # Example for upgrading from 17.0 to 18.0
-Read: skills/odoo-security-guide-17-18.md
+Read: reference/odoo-security-guide-17-18.md
 ```
 
 ### Step 3: Apply Patterns

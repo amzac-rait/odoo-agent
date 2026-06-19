@@ -1,5 +1,6 @@
 ---
-description: "**AUTO-USE** when user wants to test: 'run tests', 'test module', 'execute tests', 'check tests', 'verify tests'. Runs Odoo tests using Doodba's invoke test command."
+name: odoo-test
+description: Run Odoo tests using Doodba invoke test. Use when user wants to run tests, test module, execute tests, check tests, or verify tests.
 ---
 
 # Odoo Test Command

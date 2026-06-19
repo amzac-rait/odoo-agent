@@ -1,7 +1,7 @@
 [project]
 name = "odoo-indexer-skill"
 version = "1.0.0"
-description = "Odoo codebase indexer for Claude Code"
+description = "Odoo codebase indexer for Cursor"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}

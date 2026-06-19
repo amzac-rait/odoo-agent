@@ -43,7 +43,7 @@ Review an Odoo module for best practices, security vulnerabilities, performance 
 ║  You MUST invoke the odoo-code-reviewer agent to perform the review.         ║
 ║  DO NOT perform manual code reviews - the agent has systematic checklists.   ║
 ║                                                                              ║
-║  Invoke: Task tool with subagent_type="odoo-development:odoo-code-reviewer"  ║
+║  Invoke: Task tool with subagent_type="generalPurpose"  ║
 ║  Prompt: "Review module at [path] for version [version]"                     ║
 ║                                                                              ║
 ║  NEVER skip this step. Agent-based review is MANDATORY.                      ║
@@ -87,8 +87,8 @@ If not provided:
 ### Step 2: Load Version-Specific Knowledge
 
 ```
-Read: odoo-development/skills/odoo-security-guide-{version}.md
-Read: odoo-development/skills/odoo-model-patterns-{version}.md
+Read: ../odoo-development/reference/odoo-security-guide-{version}.md
+Read: ../odoo-development/reference/odoo-model-patterns-{version}.md
 ```
 
 ### Step 3: Perform Review
@@ -218,7 +218,7 @@ Review the module against these categories:
 ## AI Agent Instructions
 
 1. **IDENTIFY**: Determine module path and target version
-2. **MANDATORY**: Invoke `odoo-development:odoo-code-reviewer` agent
+2. **MANDATORY**: Invoke odoo-code-reviewer skill via Task tool
    - Dispatch the agent **alone** in its own tool-use message.
    - Do NOT in the same message (or while waiting for the result) run Bash/Read/Grep/Glob
      against the module being reviewed. See "NO PARALLEL EXPLORATION".

@@ -1,0 +1,15 @@
+---
+description: Mandatory Odoo development workflow - version detection and context gathering before code generation
+alwaysApply: true
+---
+
+# Odoo Development Workflow
+
+When working on ANY Odoo task (modules, models, views, fields, OWL, security, migrations):
+
+1. **Detect Odoo version first** — never generate version-specific code without confirming 14–19.
+2. **Invoke context gathering** — use the Task tool with `subagent_type="generalPurpose"` and prompt it to follow `.cursor/skills/odoo-context-gatherer/SKILL.md` (or `~/.cursor/skills/odoo-context-gatherer/SKILL.md` when installed globally).
+3. **Load patterns on demand** — read only the needed files from `odoo-development/reference/` via the Read tool. Do not preload all pattern files.
+4. **Use the indexer** — for codebase lookups in Doodba projects, use the `odoo-indexer` skill before reading full source files.
+
+Never skip context gathering before writing or modifying Odoo code.

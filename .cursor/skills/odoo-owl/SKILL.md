@@ -62,7 +62,7 @@ What Odoo version are you targeting?
 ### Step 2: Load Version-Specific Skill
 
 ```
-Read: odoo-development/skills/odoo-owl-components-{version}.md
+Read: ../odoo-development/reference/odoo-owl-components-{version}.md
 ```
 
 ### Step 3: Gather Component Information
